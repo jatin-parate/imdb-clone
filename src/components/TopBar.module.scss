@@ -1,0 +1,20 @@
+.button {
+  @apply hover:bg-zinc-800 px-4 rounded-md h-full flex flex-row items-center justify-center gap-2 font-semibold;
+}
+
+.divider {
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  width: 1px;
+  height: 2rem;
+  margin: 0 0.5rem;
+}
+
+.watchListBtn {
+  .icon {
+    @apply text-gray-400;
+  }
+
+  &:hover .icon {
+    @apply text-zinc-100;
+  }
+}

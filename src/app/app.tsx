@@ -1,15 +1,10 @@
-import styled from 'styled-components';
-import NxWelcome from './nx-welcome';
-
-const StyledApp = styled.div`
-  // Your style here
-`;
+import TopBar from "../components/TopBar";
 
 export function App() {
   return (
-    <StyledApp>
-      <NxWelcome title="imdb-clone" />
-    </StyledApp>
+    <div className="bg-black text-zinc-100	flex w-screen min-h-screen">
+      <TopBar />
+    </div>
   );
 }
 
