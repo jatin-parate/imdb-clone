@@ -5,13 +5,15 @@ import { AiOutlineClose } from 'react-icons/ai';
 import { BiCaretDown, BiSearch } from 'react-icons/bi';
 import logo from '../assets/logo.svg';
 import classNames from 'classnames';
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 
 export default function TopBar() {
   const [isSearchActive, setIsSearchActive] = useState<boolean>(false);
+  const [dropdownActive, setDropdownActive] = useState<boolean>(false);
 
   const activateSearch = () => setIsSearchActive(true);
   const deActivateSearch = () => setIsSearchActive(false);
+  const closeDropDown = useCallback(() => setDropdownActive(false), []);
 
   return (
     <div className="relative h-[3.5rem]">
@@ -95,9 +97,51 @@ export default function TopBar() {
         <button className={classNames(classes.button, 'order-7')}>
           Sign In
         </button>
-        <button className={classNames(classes.button, 'order-8')}>
-          En <BiCaretDown />
-        </button>
+        <div className="relative order-8">
+          <button
+            className={classes.button}
+            type="button"
+            onClick={(event) => {
+              event.stopPropagation();
+              setDropdownActive(!dropdownActive);
+              if (!dropdownActive) {
+                document.body.addEventListener('click', closeDropDown);
+              } else {
+                document.body.removeEventListener('click', closeDropDown);
+              }
+              return false;
+            }}
+          >
+            En <BiCaretDown />
+          </button>
+          {/* Dropdown menu */}
+          <div
+            className={classNames(
+              'absolute top-full mt-2 right-0 z-10 w-[16rem] bg-zinc-800 rounded divide-y divide-gray-100 shadow',
+              !dropdownActive && 'hidden'
+            )}
+          >
+            <div className="block pt-4 pb-2 px-4 text-sm">Fully Supported</div>
+            <ul className="py-1 text-sm text-zinc-50">
+              <li>
+                <label className='flex gap-2 py-2 px-4 font-bold text-base'>
+                  <input checked type="radio" className='accent-yellow-400 text-lg' />
+                  <span>English (United States)</span>
+                </label>
+              </li>
+              <li>
+                <a href="#" className="block py-2 px-4 hover:bg-zinc-600">
+                  Dashboard
+                </a>
+              </li>
+              <li>
+                <a href="#" className="block py-2 px-4 hover:bg-zinc-600">
+                  Settings
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
       </div>
     </div>
   );
