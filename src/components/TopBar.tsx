@@ -15,31 +15,21 @@ export default function TopBar() {
 
   return (
     <div className="relative h-[3.5rem]">
-      <div className="flex h-full items-center px-2 md:px-[2.5rem] bg-zinc-900 py-3 w-screen mx-auto text-sm md:text-base">
-        <img
-          src={logo}
-          alt="logo"
-          className="mx-1 cursor-pointer order-2 lg:order-1"
-        />
-        <button
-          className={classNames(
-            classes.button,
-            'mx-0 !px-2 md:!px-4 md:mx-2 order-1 lg:order-2'
-          )}
-        >
+      <div className={classes.container}>
+        <img src={logo} alt="logo" className={classes.logo} />
+        <button className={classNames(classes.menuButton)}>
           <FaBars />
-          <span className="hidden lg:inline">Menu</span>
+          <span>Menu</span>
         </button>
         <div
           className={classNames(
-            'hidden order-3 grow h-full text-zinc-800 items-center bg-slate-50 rounded-md md:grid grid-cols-[auto_1fr_auto] focus-within:ring-2  focus-within:ring-inset  focus-within:ring-yellow-400 mx-2',
-            isSearchActive &&
-              'absolute left-0 top-0 bottom-0 w-full z-50 !flex !px-0 !mx-0 !rounded-none bg-zinc-800 focus-within:!ring-0'
+            classes.searchContainer,
+            isSearchActive && classes.active
           )}
         >
           <button
             className={classNames(
-              'h-full flex flex-row items-center justify-center gap-2 font-semibold border-r border-r-zinc-400 px-2 rounded-none mr-2',
+              classes.searchCategorySelect,
               isSearchActive && '!hidden'
             )}
           >
@@ -63,30 +53,20 @@ export default function TopBar() {
           </button>
           <button
             className={classNames(
-              classes.button,
-              'font-medium px-4 text-xl',
-              !isSearchActive && '!hidden',
-              isSearchActive && '!flex !text-white'
+              classes.searchClose,
+              isSearchActive && classes.visible
             )}
             onClick={deActivateSearch}
           >
             <AiOutlineClose />
           </button>
         </div>
-        <div className="order-3 flex justify-end h-full grow md:!hidden">
-          <button
-            onClick={activateSearch}
-            className={classNames(
-              classes.button,
-              '!rounded-full !w-9 !h-9 !p-0'
-            )}
-          >
+        <div className={classes.mobileSearchBtnContainer}>
+          <button onClick={activateSearch} className={classes.mobileSearchBtn}>
             <BiSearch />
           </button>
         </div>
-        <button
-          className={classNames(classes.button, 'order-4 !hidden lg:!flex')}
-        >
+        <button className={classes.proBtn}>
           <svg
             width="52"
             height="14"
@@ -107,16 +87,8 @@ export default function TopBar() {
             </g>
           </svg>
         </button>
-        <div
-          className={classNames(classes.divider, 'order-5 hidden md:block')}
-        />
-        <button
-          className={classNames(
-            classes.button,
-            classes.watchListBtn,
-            'order-6 !hidden lg:!flex'
-          )}
-        >
+        <div className={classes.divider} />
+        <button className={classNames(classes.watchListBtn)}>
           <BsBookmarkPlusFill className={classes.icon} />
           Watchlist
         </button>

@@ -1,15 +1,58 @@
+.container {
+  @apply flex h-full items-center px-2 md:px-[2.5rem] bg-zinc-900 py-3 w-screen mx-auto text-sm md:text-base;
+}
+
+.logo {
+  @apply mx-1 cursor-pointer order-2 lg:order-1;
+}
+
 .button {
   @apply hover:bg-zinc-800 px-4 rounded-md h-full flex flex-row items-center justify-center gap-2 font-semibold;
 }
 
+.menuButton {
+  @apply button mx-0 px-2 md:px-4 md:mx-2 order-1 lg:order-2;
+
+  > span:last-child {
+    @apply hidden lg:inline;
+  }
+}
+
+.searchContainer {
+  @apply hidden order-3 grow h-full text-zinc-800 items-center bg-slate-50 rounded-md md:grid grid-cols-[auto_1fr_auto] focus-within:ring-2  focus-within:ring-inset  focus-within:ring-yellow-400 mx-2;
+
+  &.active {
+    @apply absolute left-0 top-0 bottom-0 w-full z-50 flex px-0 mx-0 rounded-none bg-zinc-800 focus-within:ring-0;
+  }
+}
+
+.searchCategorySelect {
+  @apply h-full flex flex-row items-center justify-center gap-2 font-semibold border-r border-r-zinc-400 px-2 rounded-none mr-2;
+}
+
+.searchClose {
+  @apply button font-medium px-4 text-xl hidden md:hidden;
+
+  &.visible {
+    @apply flex text-white;
+  }
+}
+
+.mobileSearchBtnContainer {
+  @apply order-3 flex justify-end h-full grow md:hidden;
+}
+
+.proBtn {
+  @apply button order-4 hidden lg:flex #{!important};
+}
+
 .divider {
-  border: 1px solid rgba(255, 255, 255, 0.16);
-  width: 1px;
-  height: 2rem;
-  margin: 0 0.5rem;
+  @apply h-8 w-[1px] border border-solid border-[#ffffff29] order-5 hidden md:block mx-2;
 }
 
 .watchListBtn {
+  @apply button order-6 hidden lg:flex #{!important};
+
   .icon {
     @apply text-gray-400;
   }
@@ -17,4 +60,8 @@
   &:hover .icon {
     @apply text-zinc-100;
   }
+}
+
+.mobileSearchBtn {
+  @apply button rounded-full w-9 h-9 p-0 #{!important};
 }
