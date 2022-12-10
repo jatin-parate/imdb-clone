@@ -15,7 +15,7 @@ export default function TopBar() {
 
   return (
     <div className="relative h-[3.5rem]">
-      <div className="flex h-full items-center px-2 md:px-[2.5rem] bg-zinc-900 py-2 w-screen mx-auto text-sm md:text-base">
+      <div className="flex h-full items-center px-2 md:px-[2.5rem] bg-zinc-900 py-3 w-screen mx-auto text-sm md:text-base">
         <img
           src={logo}
           alt="logo"
